@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+#define ll long long
+#define FOR(i, a, b, s) for (int i = (a); (s) > 0 ? i < (b) : i > (b); i += (s))
+#define for1(e) FOR(i, 0, e, 1)
+#define vi vector<ll>
+#define pb push_back
+
+using namespace std;
+
+void solve() {
+    int n;
+    cin >> n;
+    vi arr;
+    vi res;
+
+    for1(n) {
+        int k;
+        cin >> k;
+        arr.pb(k);
+
+        vi Hi = arr;
+        int m = Hi.size();
+        vi hash(m + 1, 0);
+
+        for1(m) {
+            if (Hi[i] >= m) hash[m]++;
+            else hash[Hi[i]]++;
+        }
+
+        ll cnt = 0;
+        FOR(i, m, -1, -1) {
+            cnt += hash[i];
+            if (i <= cnt) {
+                res.pb(i);
+                break;
+            }
+        }
+    }
+
+    for1(n) {
+        cout << res[i] << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin >> t;
+    for(int i=0;i<t;i++) {
+        cout << "Case #" << i + 1 << ": ";
+        solve();
+    }
+}
